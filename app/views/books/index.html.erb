@@ -1,0 +1,9 @@
+<h1>Books List</h1>
+<%= link_to 'Add New Book', new_book_path %>
+<br>
+<%= link_to 'Report Page', report_books_path %>
+<% if @books.any? %>
+  <ol>
+    <%= render @books %>
+  </ol>
+<% end %>

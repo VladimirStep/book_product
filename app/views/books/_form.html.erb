@@ -1,0 +1,28 @@
+<%= render 'shared/errors', errors: book.errors %>
+<%= form_for book do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :author_ids, 'Authors' %>
+  <%= f.select :author_ids, {}, {}, { multiple: true, size: 5 } do %>
+    <%= options_from_collection_for_select(Author.all, :id, :full_name, book.author_ids) %>
+  <% end %>
+
+  <%= f.label :release_date %>
+  <%= f.date_select :release_date %>
+
+  <%= f.label :base_price %>
+  <%= f.number_field :base_price, step: 0.01 %>
+
+  <%= f.label :currency %>
+  <%= f.select :currency do %>
+    <%= options_for_select(available_currencies, book.currency) %>
+  <% end %>
+
+  <%= f.label :format %>
+  <%= f.select :format do %>
+    <%= options_for_select(Book.formats_names, book.format) %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

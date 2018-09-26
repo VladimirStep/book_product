@@ -14,4 +14,17 @@ class Book < ApplicationRecord
   def self.formats_names
     formats.keys
   end
+
+  def authors_names
+    authors.map { |author| "#{author.full_name}" }.join(', ')
+  end
+
+  def self.released_in(year)
+    return none unless year
+    parsed_date = Date.new(year) rescue nil
+    return none unless parsed_date
+    includes(:authors)
+        .where(format: formats[:hardcover])
+        .where(release_date: (parsed_date.beginning_of_year..parsed_date.end_of_year))
+  end
 end

@@ -1,0 +1,9 @@
+<h1><%= @book.title %></h1>
+<h3>Authors: <%= @book.authors_names %></h3>
+<p>Release date: <%= @book.release_date %></p>
+<p>Base price: <%= number_to_currency(@book.base_price, unit: @book.currency) %></p>
+<p>Format: <%=@book.format %></p>
+
+<%= link_to 'Edit this book', edit_book_path(@book) %>
+<br>
+<%= link_to 'List of books', books_path %>

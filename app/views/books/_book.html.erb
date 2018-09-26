@@ -1,0 +1,7 @@
+<li>
+  <%= link_to book_path(book) do %>
+    <%= period(book.title) %>
+  <% end %>
+  <span><%= period(book.authors_names) %></span>
+  <span><%= period(book.release_date) %></span>
+</li>
